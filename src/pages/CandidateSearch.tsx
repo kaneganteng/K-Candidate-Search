@@ -1,3 +1,4 @@
+// Imports for useState, useEffect, searchGithub, searchGithubUser, and Candidate interface
 import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
@@ -12,17 +13,17 @@ const CandidateSearch = () => {
       const candidates = await searchGithub();
       setCandidateList(candidates);
       if (candidates.length > 0) {
-        // Fetch detailed information for the first candidate
+        // Fetch information for the first candidate
         await loadCandidateDetails(candidates[0].login); 
       }
     };
     fetchCandidates();
   }, []);
 
-  // New function to load detailed candidate information
+  // Function to load candidate information
   const loadCandidateDetails = async (username: string) => {
     const detailedCandidate = await searchGithubUser(username);
-    setCurrentCandidate(detailedCandidate); // Update currentCandidate with detailed info
+    setCurrentCandidate(detailedCandidate); 
   };
 
   const saveCandidateAndLoadNext = async () => {
@@ -46,7 +47,7 @@ const CandidateSearch = () => {
   
       const nextCandidateLogin = candidateList[nextIndex].login;
       if (nextCandidateLogin) {
-        await loadCandidateDetails(nextCandidateLogin); // Only call if login is defined
+        await loadCandidateDetails(nextCandidateLogin); 
       } else {
         console.warn("Candidate login is null or undefined");
       }
@@ -65,17 +66,20 @@ const CandidateSearch = () => {
         <div>
           
           <img src={currentCandidate.avatar_url || ''} alt={`${currentCandidate.name || 'Unnamed'}'s avatar`} />
-          <h2>{currentCandidate.name || 'No Name'}</h2> {/* Display name with fallback */}
+          <h2>{currentCandidate.name || 'No Name'}</h2> {/* Display name of the candidate or 'No Name' if candidate does not have a name on their profile */}
           <p>Username: {currentCandidate.login}</p>
-          <p>Location: {currentCandidate.location || 'Not provided'}</p> {/* Display location with fallback */}
-          <p>Email: {currentCandidate.email || 'Not provided'}</p> {/* Display email with fallback */}
-          <p>Company: {currentCandidate.company || 'Not provided'}</p> {/* Display company with fallback */}
+          <p>Location: {currentCandidate.location || 'Not provided'}</p> {/* Display location or 'not provided' */}
+          <p>Email: {currentCandidate.email || 'Not provided'}</p> {/* Display email or 'not provided' */}
+          <p>Company: {currentCandidate.company || 'Not provided'}</p> {/* Display company or 'not provided' */}
+          
+          {/* This will be a clickable link that takes user to the candidate's github profile */}
           <a href={currentCandidate.html_url || ''} target="_blank" rel="noopener noreferrer">
             GitHub URL
           </a>
           
         </div>
       ) : (
+        // This will display after looking through a certain number of candidates
         <p>No more candidates available for review</p>
       )}
     </div>

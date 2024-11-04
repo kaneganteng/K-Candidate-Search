@@ -34,11 +34,13 @@ const SavedCandidates = () => {
         detailedCandidates.map((candidate, index) => (
           <div key={index}>
             <img src={candidate.avatar_url || ''} alt={`${candidate.name}'s avatar`} />
-            <h2>{candidate.name}</h2>
+            <h2>{candidate.name}</h2> {/* Display name of the candidate or 'No Name' if candidate does not have a name on their profile */}
             <p>Username: {candidate.login}</p>
-            <p>Location: {candidate.location || 'Not Provided'}</p>
-            <p>Email: {candidate.email || 'Not Provided'}</p>
-            <p>Company: {candidate.company || 'Not Provided'}</p>
+            <p>Location: {candidate.location || 'Not Provided'}</p> {/* Display location or 'not provided' */}
+            <p>Email: {candidate.email || 'Not Provided'}</p> {/* Display email or 'not provided' */}
+            <p>Company: {candidate.company || 'Not Provided'}</p> {/* Display company or 'not provided' */}
+            
+            {/* This will be a clickable link that takes user to the candidate's github profile */}
             <a href={candidate.html_url || ''} target="_blank" rel="noopener noreferrer">
               GitHub URL
             </a>

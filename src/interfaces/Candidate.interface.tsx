@@ -1,4 +1,4 @@
-// TODO: Create an interface for the Candidate objects returned by the API
+// An interface for the Candidate objects returned by the API
 export interface Candidate {
     readonly name: string | null;
     readonly login: string | null;
