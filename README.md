@@ -12,7 +12,7 @@
   * [How to Contribute](#howToContribute)
   * [Test](#test)
   ## Installation
-  This application will be deployed on Netlify. You can access the application through this URL: " ". If you would like to see the code, you can go to https://github.com/kaneganteng/K-Candidate-Search and you can try making changes by doing a git clone on your terminal.
+  This application will be deployed on Netlify. You can access the application through this URL: "https://k-candidate-search.netlify.app/". If you would like to see the code, you can go to https://github.com/kaneganteng/K-Candidate-Search and you can try making changes by doing a git clone on your terminal.
   ## Usage
   Once user go the deployment link, user can either add a candidate to the "Potential Candidates" by clicking on the "+" or clicking on the "-" to skip the candidate. The home page of this application will look like this:<br> ![Screenshot of the home page application](./assets/K-Candidate-Search-Home.png)
   ## Credits
